@@ -1,6 +1,6 @@
 Gadux
 
-Gadux is a state management system written in Gambit Scheme, inspired by Redux. It is designed to be fully functional in the programming sense, providing a robust and flexible way to maintain and manage state in your application. Gadux allows state to be dynamically rebuilt whenever components are modified, ensuring that your application remains up-to-date with the latest changes.
+Gadux is a state management system written in Gambit Scheme, inspired by Redux. It is designed to be a fully functional state management system, providing a robust and flexible way to maintain and manage state in your application. Gadux allows state to be dynamically rebuilt whenever components are modified, ensuring that your application remains up-to-date with the latest changes.
 
 Features
 
