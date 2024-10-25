@@ -60,9 +60,17 @@
 ;;;; Comp Datum Set
 ;;;
 
-(define (comp-datum-set! state ID . data)
+(define (comp-datum-set! state ID data)
   (let ((comp-pair (state-ref state ID)))
-    (if comp-pair (apply %comp-datum-set! (list (cdr comp-pair) data)))))
+    (if comp-pair (state-add! state (apply %comp-datum-set! (list (cdr comp-pair) data))))))
+
+;; Data should have the form (cons ID (list (cons key val) ...))
+
+(define (state-data-set! state . data)
+  (let loop ((data data))
+    (if (null? data) state
+        (let ((key-val (car data)))
+          (comp-datum-set! (loop (cdr data)) (car key-val) (cdr key-val))))))
 
 ;;;
 ;;;; Execute
