@@ -36,7 +36,8 @@
 
    ;; Component related
    make-data-comp
-   make-executable-comp)
+   make-executable-comp
+   ref)
 
   (begin
     (include "lib/main.scm")

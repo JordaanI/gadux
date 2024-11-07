@@ -33,7 +33,25 @@
 ;;;
 
 (define (unpack-data state comp)
-  (apply append `((state: ,state) ,@(map (lambda (arg) (list (symbol->keyword (car arg)) (cdr arg))) (component-data comp)))))
+  (apply append
+         `((state: ,state)
+           ,@(map
+              (lambda (arg)
+                (let* ((key (car arg))
+                       (skey (symbol->string key))
+                       (is-ref? (char=? (string-ref skey 0) #\>)))
+                  (if is-ref?
+                      (let ((ref (substring skey 1 (string-length skey))))
+                        (list (string->keyword ref) (cdr (state-ref state (string->symbol ref) executable?: (cdr arg)))))
+                      (list (string->keyword skey) (cdr arg)))))
+              (component-data comp)))))
+
+;;;
+;;;; Ref comp
+;;;
+
+(define (ref s #!key (executable? #f))
+  (cons (string->symbol (string-append ">" (symbol->string s))) executable?))
 
 ;;;
 ;;;; Executing procedures
