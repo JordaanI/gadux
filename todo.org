@@ -1,3 +1,0 @@
-* TODO Gadux System
-** Is it possible with the current system to create executable comps that take components as arguments
-- Can we then specify those components by some ref and let them exist in the state.
