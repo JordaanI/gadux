@@ -62,7 +62,8 @@
 ;;;
 
 (define (make-comp-executable comp)
-  (make-component (component-ID comp) (component-data comp) (component-procedure comp) #t))
+  (if (component-executable? comp) comp
+      (make-component (component-ID comp) (component-data comp) (component-procedure comp) #t)))
 
 ;;;
 ;;;; Set comp datum
